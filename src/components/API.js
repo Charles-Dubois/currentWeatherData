@@ -14,12 +14,12 @@ export default function API() {
         fetch(
           `https://api.openweathermap.org/data/2.5/weather?lat=${res[0].lat}&lon=${res[0].lon}&appid=ca1dd64b9fae08811d95e154d46897da`
         )
-      ) // récupère la méto au coordonées récupérés
+      ) // récupère la méto au coordonées récupérés²
       .then((res) => res.json())
       //! a retier
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, [cityInfos.city]);
 
   return <p>Hello from API</p>;
 }
