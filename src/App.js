@@ -1,24 +1,33 @@
+//css
 import "./App.css";
+//views
 import Home from "./views/Home";
 import Favorites from "./views/Favorites";
+//componenents
+import API from "./components/API";
+// dependances
 import { createContext, useState } from "react";
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-export const NameContext = createContext("light");
+//! creation dun contexte vide stocké la ville recherché
+export const CityContext = createContext("");
+//corps de fonction
 export default function App() {
-  const [setUpState, setSetUpState] = useState("");
+  //!creation d'un state ou est stocké la ville recherché
+  const [city, setCity] = useState("paris");
+
   const context = {
-    setUpState: setUpState,
-    setSetUpState: setSetUpState,
+    city: city,
+    setCity: setCity,
   };
+
   return (
     <>
-      <NameContext.Provider value={context}>
+      <CityContext.Provider value={context}>
         <BrowserRouter>
           <nav>
             <Link to="/">Home</Link>
             <Link to="/favorites">favorites</Link>
           </nav>
-
           <Switch>
             <Route exact path="/" component={Home}></Route>
             <Route exact path="/favorites" component={Favorites}></Route>
@@ -28,7 +37,7 @@ export default function App() {
             <p>{new Date().toLocaleDateString("fr")}</p>
           </footer>
         </BrowserRouter>
-      </NameContext.Provider>
+      </CityContext.Provider>
     </>
   );
 }

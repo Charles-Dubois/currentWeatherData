@@ -1,3 +1,5 @@
+import API from "../components/API";
+
 export default function Home() {
-  return <p>Hello from home</p>;
+  return <API></API>;
 }
