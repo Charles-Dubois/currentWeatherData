@@ -7,12 +7,34 @@ export default function Favorites() {
   const [dataCity, setDataCity] = useState([]);
 
   useEffect(() => {}, [cityInfos.city]);
-
-  const onclickTest = () => console.log(dataCity);
+  //TODO partie a reprendre
+  const onclickTest = () => {
+    console.log(`les noms des favoris = `);
+    console.log(cityInfos.favorites);
+    console.log(`les infos des favoris =`);
+    console.log(dataCity);
+  };
+  //* Cette fonction fait sont job
+  function removeFromNomDesFavoris(param) {
+    cityInfos.favorites.splice(param);
+  }
+  //* cette fonction ne fonctionne pas
+  function removeFromInfosDesFavoris(param) {
+    dataCity.favorites.splice(param);
+  }
+  //TODO fin de partie a reprendre
   const myCard = () => {
     return dataCity.length > 0
       ? dataCity.map((res, i) => {
-          return <CityCard key={i} data={res}></CityCard>;
+          return (
+            <div key={i}>
+              <CityCard
+                data={res}
+                index={i}
+                onClick={removeFromInfosDesFavoris}
+              ></CityCard>
+            </div>
+          );
         })
       : null;
   };
