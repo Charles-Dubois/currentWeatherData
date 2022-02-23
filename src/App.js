@@ -12,12 +12,22 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 export const CityContext = createContext("");
 //corps de fonction
 export default function App() {
+  const handleFavorites = () => {
+    if (favorites.length < 3) {
+      setFavorites((prevState) => {
+        return [...prevState, city];
+      });
+    } else return <alert>You cannot have more than 3 favorites city</alert>; //! a modifier tantot
+  };
+
   //!creation d'un state ou est stocké la ville recherché
   const [city, setCity] = useState("paris");
-
+  const [favorites, setFavorites] = useState([]);
   const context = {
     city: city,
     setCity: setCity,
+    favorites: favorites,
+    setFavorites: handleFavorites,
   };
 
   return (

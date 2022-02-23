@@ -25,7 +25,7 @@ export default function Home() {
     cityInfos.setCity(currentSearch);
   };
   //!   A retier
-  const test = () => console.log(cityInfos.city);
+  const test = () => console.log(cityInfos.favorites);
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -42,6 +42,7 @@ export default function Home() {
       </form>
       {/* A retier */}
       <button onClick={test}>test</button>
+      <button onClick={cityInfos.setFavorites}>Add to your favorites</button>
 
       <API></API>
     </>
