@@ -17,7 +17,7 @@ export default function App() {
       setFavorites((prevState) => {
         return [...prevState, city];
       });
-    } else return <alert>You cannot have more than 3 favorites city</alert>; //! a modifier tantot
+    } else return alert("You cannot have more than 3 favorites city");
   };
 
   //!creation d'un state ou est stocké la ville recherché
