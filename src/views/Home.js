@@ -22,6 +22,9 @@ export default function Home() {
   const handleSearch = (event) => {
     return setCurrentSearch(event.target.value);
   };
+  //* leflet part
+
+  //* leflet part end
 
   useEffect(() => {
     fetch(

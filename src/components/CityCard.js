@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { CityContext } from "../App";
-
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useContext } from "react";
+import "leaflet/dist/leaflet.css";
 
 export default function CityCard(props) {
   const cityInfos = useContext(CityContext);
@@ -12,7 +13,7 @@ export default function CityCard(props) {
   return props.index !== undefined ? (
     <StyledCard className={props.data.weather[0].main || "none"}>
       <div className="card">
-        <button onClick={() => localStore(props.data.name)}>Default</button>
+        <button onClick={() => localStore(props.data.name)}>Home</button>
         <button onClick={() => props.onClick(props.index)}>Remove</button>
         <h4>{props.data.name}</h4>
         <p>{props.data.weather[0].description}</p>
@@ -52,6 +53,22 @@ export default function CityCard(props) {
           src={`/weather/${props.data.weather[0].main}.jpg`}
         />
       </div>
+
+      <MapContainer
+        center={[51.505, -0.09]}
+        zoom={13}
+        style={{ height: "500px" }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={[51.505, -0.09]}>
+          <Popup>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+      </MapContainer>
     </StyledCard>
   );
 }
@@ -73,5 +90,12 @@ const StyledCard = styled.section`
   }
   .card {
     text-align: center;
+  }
+  .map {
+    height: 500px;
+  }
+  .leaflet-container {
+    height: 800px;
+    width: 500px;
   }
 `;
