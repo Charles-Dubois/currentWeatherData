@@ -46,9 +46,9 @@ export default function Home() {
     return dataCity ? <CityCard data={dataCity}></CityCard> : null;
   };
   //!   A retier
-  const test = () => console.log(cityInfos.favorites);
+  const test = () => console.log(dataCity);
   return (
-    <>
+    <div className="SearchBar">
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
           {...register("city", {
@@ -65,6 +65,6 @@ export default function Home() {
       <button onClick={test}>test</button>
       <button onClick={cityInfos.setFavorites}>Add to your favorites</button>
       {myCard()}
-    </>
+    </div>
   );
 }
