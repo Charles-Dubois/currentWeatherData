@@ -22,7 +22,7 @@ export default function App() {
   };
 
   //creation d'un state
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState(localStorage.getItem("default"));
   const [favorites, setFavorites] = useState([]);
   const [favoritesData, setFavoritesData] = useState([]);
   const context = {

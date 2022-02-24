@@ -5,10 +5,14 @@ import { useContext } from "react";
 
 export default function CityCard(props) {
   const cityInfos = useContext(CityContext);
+  function localStore(city) {
+    return localStorage.setItem("default", city);
+  }
 
   return props.index !== undefined ? (
     <StyledCard className={props.data.weather[0].main || "none"}>
       <div className="card">
+        <button onClick={() => localStore(props.data.name)}>Default</button>
         <button onClick={() => props.onClick(props.index)}>Remove</button>
         <h4>{props.data.name}</h4>
         <p>{props.data.weather[0].description}</p>
@@ -32,8 +36,9 @@ export default function CityCard(props) {
     <StyledCard>
       <div className="card">
         <h4>{props.data.name}</h4>
-        <p>{props.data.weather[0].description}</p>
 
+        <button onClick={() => localStore(cityInfos.city)}>Default</button>
+        <p>{props.data.weather[0].description}</p>
         <p>Temperature : {Math.floor(props.data.main.temp - 273.5)}°C</p>
         <img
           src={`http://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`}
@@ -42,7 +47,6 @@ export default function CityCard(props) {
           Felt temperature : {Math.floor(props.data.main.feels_like - 273.5)}°C
         </p>
         <p>Humidity : {props.data.main.humidity}%</p>
-
         <img
           className="background"
           src={`/weather/${props.data.weather[0].main}.jpg`}
